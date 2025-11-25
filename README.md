@@ -8,11 +8,10 @@ For clarification, this study used 2 model libraries:
         -- ResNext 50    (resnext50_32x4d)
         -- ConvNext Base (convnext_base)
         -- VGG 19        (vgg19_bn)
+        
   Torchvision -- ShuffleNet V2   (shufflenet_v2_x1_0)
               -- EfficientNet V2 (efficientnet_v2_s)
 
 
 If you find this repository and datasets useful in your research, please cite as follows:
-  jdwjoidw
-  
   Hussin, A. A., Eva Mohamad, S., Iwamoto, K., & Takemoto, K. (2026). LMFM-12 [Data   set]. Zenodo. https://doi.org/10.5281/zenodo.17669912
