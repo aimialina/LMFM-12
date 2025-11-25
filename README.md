@@ -1,25 +1,33 @@
 # LMFM-12
 
-Dataset of **LMFM-12** can be accessed through:  
-[https://doi.org/10.5281/zenodo.17669912](https://doi.org/10.5281/zenodo.17669912)
+<img width="6000" height="3374" alt="graphical_abstract" src="https://github.com/user-attachments/assets/2e1a7784-5e08-4a32-bbd4-4a84f1ec09ad" />
+
+
+
+# **A Morphologically Diverse Freshwater Microalgae Dataset for Deep Learning-Based Classification with Transfer Learning Analysis**
+
+Aimi Alina Binti Hussina, Mohd Ibrahim Shapiai, Shaza Eva Mohamad, Koji Iwamoto, Mohd Farizal Kamaroddin, Kazuhiro Takemoto
+
+We introduce the Light Microscopy Freshwater Microalgae (LMFM-12) dataset, comprising 7,555 curated images from 12 species under multiple magnifications, the largest publicly available freshwater microalgae light microscopy dataset to date. Comprehensive evaluation of seven CNN architectures reveals that randomly initialized models achieve accuracies exceeding 98%, approaching the performance of fully fine-tuned ImageNet-pretrained networks. Through the first application of Singular Vector Canonical Correlation Analysis (SVCCA) to microalgae classification, we suggest that random initialization develops different representational strategies that may be more suited to microscopic morphology, contrasting sharply with ImageNet-adapted features. Despite achieving comparable accuracy, these divergent approaches suggest that effective microalgae classification emerges from learning specialized microscopic features rather than adapting generic visual patterns. Cross-domain evaluation reveals that while ImageNet pretraining achieves superior generalization performance, Grad-CAM++ analysis shows distinct attention patterns between ImageNet and LMFM-12 initialization strategies. This positions LMFM-12 as a useful resource for advancing automated microalgae classification research.
+
+Keywords: microalgae dataset, transfer learning, datasets comparison, SVCCA, image classification
 
 ---
 
-For clarification, this study used **2 model libraries**:
+Models used are from 2 model libraries:
 
-**Timm**:  
+*Timm*:  
 - MobileNet V2 (`mobilenetv2_100`)  
 - DenseNet 121 (`densenet121`)  
 - ResNext 50 (`resnext50_32x4d`)  
 - ConvNext Base (`convnext_base`)  
 - VGG 19 (`vgg19_bn`)  
 
-**Torchvision**:  
+*Torchvision*:  
 - ShuffleNet V2 (`shufflenet_v2_x1_0`)  
 - EfficientNet V2 (`efficientnet_v2_s`)  
 
 ---
 
-If you find this repository and datasets useful in your research, please cite as follows:
-
+If you find our code/dataset/evaluation useful in your research, please cite as follows:
 > Hussin, A. A., Eva Mohamad, S., Iwamoto, K., & Takemoto, K. (2026). LMFM-12 [Data set]. Zenodo. https://doi.org/10.5281/zenodo.17669912
