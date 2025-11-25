@@ -117,24 +117,6 @@ def get_layers():
 #        'stages.3',   
 #    ]
 
-#-------------- VGG19 --------------
-#def load_model(path, device, num_classes):
-#    model = timm.create_model('vgg19_bn', pretrained=False)
-#    model.head.fc = nn.Linear(model.head.fc.in_features, num_classes)
-#    model.load_state_dict(torch.load(path, map_location=device))
-#    model.to(device).eval()
-#    return model
-#
-#def get_layers():
-#    return [
-#        'features.0',   
-#        'features.10',  
-#        'features.20',  
-#        'features.30',  
-#        'features.43',  
-#    ]
-
-
 #-------------------------- SVCCA --------------------------
 class ModelHook:
     def __init__(self, model, layers_of_interest):
