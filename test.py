@@ -141,7 +141,7 @@ def detect_model_library(model_name):
     else:
         return 'timm'
 
-# -------------------- Model loading --------------------
+# -------------------- Model loading setup --------------------
 def create_model(model_name, num_classes):
     try:
         print(f"Creating model: {model_name} with {num_classes} classes")
@@ -150,7 +150,7 @@ def create_model(model_name, num_classes):
         
         if model_library == 'torchvision':
             model, config = get_torchvision_model(model_name, pretrained=False, num_classes=num_classes)
-            print(f"✅ Torchvision model '{model_name}' created successfully")
+            print(f" Torchvision model '{model_name}' created successfully")
             
             total_params = sum(p.numel() for p in model.parameters())
             print(f"   Parameters: {total_params:,}")
@@ -160,24 +160,24 @@ def create_model(model_name, num_classes):
         else:
             available_models = timm.list_models()
             if model_name not in available_models:
-                print(f"⚠️  '{model_name}' not found in timm models")
+                print(f"  '{model_name}' not found in timm models")
 
             model = timm.create_model(model_name, num_classes=num_classes, pretrained=False)
             total_params = sum(p.numel() for p in model.parameters())
-            print(f"✅ Model '{model_name}' created successfully")
+            print(f" Model '{model_name}' created successfully")
             print(f"   Parameters: {total_params:,}")
             
             for name, module in model.named_modules():
                 if any(word in name.lower() for word in ['classifier', 'head', 'head.fc']) and hasattr(module, 'out_features'):
                     if module.out_features == num_classes:
-                        print(f"   Classifier: {name} -> {module.out_features} classes ✅")
+                        print(f"   Classifier: {name} -> {module.out_features} classes. Done")
                     else:
-                        print(f"   Classifier: {name} -> {module.out_features} classes ❌ (expected {num_classes})")
+                        print(f"   Classifier: {name} -> {module.out_features} classes (expected {num_classes})")
             
             return model
         
     except Exception as e:
-        print(f"❌ Error creating model '{model_name}': {str(e)}")
+        print(f" Error creating model '{model_name}': {str(e)}")
         import traceback
         traceback.print_exc()
         return None
@@ -185,22 +185,22 @@ def create_model(model_name, num_classes):
 
 def load_model(model_path, device, model_name=None, num_classes=None, train_mode='ft'):
     try:
-        print(f"📦 Loading model from: {os.path.basename(model_path)}")
+        print(f" Loading model from: {os.path.basename(model_path)}")
         checkpoint = torch.load(model_path, map_location=device, weights_only=True)
         
         model = create_model(model_name, num_classes)
         if model is None:
-            print("❌ Failed to create model architecture")
+            print(" Failed to create model architecture")
             return None
         if 'state_dict' in checkpoint:
             state_dict = checkpoint['state_dict']
-            print("📦 Using 'state_dict' from checkpoint")
+            print(" Using 'state_dict' from checkpoint")
         elif 'model' in checkpoint:
             state_dict = checkpoint['model']
-            print("📦 Using 'model' from checkpoint")
+            print(" Using 'model' from checkpoint")
         else:
             state_dict = checkpoint
-            print("📦 Using checkpoint directly as state_dict")
+            print(" Using checkpoint directly as state_dict")
         
         cleaned_state_dict = {}
         for key, value in state_dict.items():
