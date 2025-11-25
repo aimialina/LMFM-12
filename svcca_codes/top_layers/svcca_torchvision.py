@@ -177,6 +177,14 @@ def compute_svcca(activations1, activations2, epsilon=1e-6):
         # SVCCA similarity is mean of canonical correlations
         svcca_similarity = np.mean(canonical_correlations)
     
+    except np.linalg.LinAlgError:
+        print("CCA computation failed, using fallback")
+        # Fallback: simple correlation coefficient
+        svcca_similarity = np.abs(np.corrcoef(
+            svd_acts1.flatten(), 
+            svd_acts2.flatten()
+        )[0, 1])
+
     return svcca_similarity
 
 def get_activations(model, layer, dataloader):
