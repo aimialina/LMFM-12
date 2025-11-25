@@ -1,4 +1,5 @@
 # SVCCA for top 2 layers (Fig 3a)
+# applied for torchvision models (shufflenet and efficientnet)
 
 import torch
 import torch.nn as nn
