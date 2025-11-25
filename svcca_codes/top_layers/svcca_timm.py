@@ -12,15 +12,12 @@ import seaborn as sns
 import pandas as pd
 import matplotlib
 import seaborn as sns
-from sklearn.metrics import confusion_matrix, roc_auc_score
 import os
 from collections import OrderedDict
 from torch.utils.data import DataLoader
 import scipy.linalg as la
 from torchvision import transforms
 from torchvision.datasets import ImageFolder
-import time
-from tqdm import tqdm
 
 model_name_script = 'DenseNet-121'
 
@@ -232,10 +229,19 @@ def compute_svcca(activations1, activations2, epsilon=1e-6):
         canonical_correlations = np.maximum(canonical_correlations, 0.0)
         # SVCCA similarity is mean of canonical correlations
         svcca_similarity = np.mean(canonical_correlations)
+        
+    except np.linalg.LinAlgError:
+        print("CCA computation failed, using fallback")
+        # Fallback: simple correlation coefficient
+        svcca_similarity = np.abs(np.corrcoef(
+            svd_acts1.flatten(), 
+            svd_acts2.flatten()
+        )[0, 1])
     
     return svcca_similarity
 
 def get_activations(model, layer, dataloader):
+    """Extract activations for a specific layer"""
     hook = ModelHook(model, [layer])
     activations = hook.get_activations(dataloader, num_batches=64)
     hook.remove_hooks()
@@ -244,8 +250,6 @@ def get_activations(model, layer, dataloader):
 #-------------------------- Visualization --------------------------
 def calculate_baseline_comparison(model_groups, dataloader, device, output_dir, num_classes=12):
     layers = get_layers()
-    
-    # Store results for each layer
     layer_results = {layer: {} for layer in layers}
 
     comparisons = {
@@ -283,7 +287,7 @@ def calculate_baseline_comparison(model_groups, dataloader, device, output_dir, 
                 'scores': scores,
                 'mean': np.mean(scores)
             }
-            
+
             clean_scores = [float(s) for s in scores]
             print(f"{each_comp}: {clean_scores}, mean={np.mean(scores):.3f}")
     
