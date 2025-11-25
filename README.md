@@ -27,6 +27,13 @@ Models used are from 2 model libraries:
 - ShuffleNet V2 (`shufflenet_v2_x1_0`)  
 - EfficientNet V2 (`efficientnet_v2_s`)  
 
+
+Sections in this paper:
+1) Comparative analysis of model performance across initialization strategies (RD, FT and FB)
+2) Analysis of SVCCA hidden representational analysis
+3) Effect of transfer learning to other publicly available phytoplankton datasets
+
+   
 ---
 
 If you find our code/dataset/evaluation useful in your research, please cite as follows:
