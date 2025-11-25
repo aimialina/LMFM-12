@@ -386,8 +386,6 @@ def train_and_validate(model, train_loader, val_loader, criterion, optimizer, sc
 
     return best_val_acc, best_val_loss, train_loss, val_loss, train_acc, val_acc, best_model_state, lr_history, best_epoch, time_stats, early_stopping_info
 
-
-
 # --------------------------------- Main execution block -------------------------------
 if __name__ == "__main__":
     print(f"Intended for {args.output_dir}")
