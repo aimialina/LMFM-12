@@ -1,3 +1,3 @@
 # LMFM-12
 
-Dataset of LMFM-12 can be accessed through https://www.kaggle.com/datasets/aimixo/lmfm-12
+Dataset of LMFM-12 can be accessed through https://doi.org/10.5281/zenodo.17669912.
