@@ -360,7 +360,7 @@ def plot_figure2_boxplot_detailed(results, save_dir):
     data_separated = [baseline_scores, ft_vs_random_scores, fb_vs_random_scores]
     bp2 = ax2.boxplot(data_separated,
                       patch_artist=True,
-                      labels=['Baseline', 'FT vs Random', 'FE vs Random'],
+                      labels=['Baseline', 'FT vs Random', 'FB vs Random'],
                       widths=0.3,
                       showfliers=True)
     
@@ -370,7 +370,7 @@ def plot_figure2_boxplot_detailed(results, save_dir):
         patch.set_alpha(0.7)
     
     ax2.set_ylabel('CCA Similarity Score')
-    ax2.set_title(f'Figure 2: CCA Similarity in 2 Top Layers (FT vs FE vs RD) -- {model_name_script}')
+    ax2.set_title(f'Figure 2: CCA Similarity in 2 Top Layers (FT vs FB vs RD) -- {model_name_script}')
     ax2.set_ylim(0, 1.0)
     ax2.grid(axis='y', alpha=0.3)
     
@@ -408,11 +408,11 @@ def plot_line_all_comparison(results, save_dir):
                 capsize=5, capthick=1.5, elinewidth=1.5)
     
     ax.errorbar(layer_indices, fb_vs_rd_mean, yerr=fb_vs_rd_se, 
-                fmt='^-', label='FE vs rd', color='green', linewidth=2, markersize=8,
+                fmt='^-', label='FB vs rd', color='green', linewidth=2, markersize=8,
                 capsize=5, capthick=1.5, elinewidth=1.5)
     
     ax.errorbar(layer_indices, ft_vs_fb_mean, yerr=ft_vs_fb_se, 
-                fmt='D-', label='FT vs FE', color='red', linewidth=2, markersize=8,
+                fmt='D-', label='FT vs FB', color='red', linewidth=2, markersize=8,
                 capsize=5, capthick=1.5, elinewidth=1.5)
     
     ax.set_xlabel('Layer')

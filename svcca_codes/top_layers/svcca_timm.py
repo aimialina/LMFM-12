@@ -321,7 +321,7 @@ def plot_figure2_boxplot_detailed(results, save_dir):
     data_separated = [baseline_scores, ft_vs_random_scores, fb_vs_random_scores]
     bp2 = ax2.boxplot(data_separated,
                       patch_artist=True,
-                      labels=['Baseline', 'FT vs Random', 'FE vs Random'],
+                      labels=['Baseline', 'FT vs Random', 'FB vs Random'],
                       widths=0.3,
                       showfliers=True)
     
@@ -331,7 +331,7 @@ def plot_figure2_boxplot_detailed(results, save_dir):
         patch.set_alpha(0.7)
     
     ax2.set_ylabel('CCA Similarity Score')
-    ax2.set_title(f'CCA Similarity in 2 Top Layers (FT vs FE vs RD) -- {model_name_script}')
+    ax2.set_title(f'CCA Similarity in 2 Top Layers (FT vs FB vs RD) -- {model_name_script}')
     ax2.set_ylim(0, 1.0)
     ax2.grid(axis='y', alpha=0.3)
     
