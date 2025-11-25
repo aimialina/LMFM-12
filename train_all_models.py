@@ -9,10 +9,8 @@ import torch.nn as nn
 import torch.optim as optim
 import matplotlib.pyplot as plt
 import numpy as np
-import random
 import pickle
 from torchvision import datasets, transforms, models
-from torchvision.models import get_weight
 from torch.utils.data import DataLoader
 from torchsampler import ImbalancedDatasetSampler
 from tqdm import tqdm
@@ -28,10 +26,10 @@ parser.add_argument('--batch_size', type=int, default=64, help='Batch size for t
 parser.add_argument('--num_epochs', type=int, default=50, help='Number of epochs to train')
 parser.add_argument('--learning_rate', type=float, default=0.001, help='Initial learning rate') 
 parser.add_argument('--img_size', type=int, default=224, help='Image size')
-parser.add_argument('--root_dir', type=str, default= "path/to/image/directories",    # fill the dataset directory
-                    help='Directory for image data')
-parser.add_argument('--output_dir', type=str, default= "path/to/output",    # fill the output directory intended to be used
-                    help='imagenet or microalgae_sp') 
+parser.add_argument('--root_dir', type=str, default= "path/to/dataset",   
+                    help='Directory for train image data')
+parser.add_argument('--output_dir', type=str, default= "path/to/output",   
+                    help='path to your output') 
 parser.add_argument('--train_mode', type=str, default='fb', choices=['fb', 'ft', 'rd'],  
                     help='Training mode: fb (frozen backbone), ft (fine-tuning), rd (random weights)')
 parser.add_argument('--run_suffix', type=str, default='',
