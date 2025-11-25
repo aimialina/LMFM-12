@@ -1,4 +1,4 @@
-# Customized code for both timm and torchvision models
+# Customized training code for both timm and torchvision models
 # parameters shown are finalized
 
 import os
