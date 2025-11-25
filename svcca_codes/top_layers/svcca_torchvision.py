@@ -82,42 +82,6 @@ def get_layers():
 #        'features.7'
 #    ]
 
-def evaluate_model(model, data_loader, device, class_names, return_predictions=False):
-    model.eval()
-    correct = 0
-    total = 0
-    all_preds = []
-    all_labels = []
-    all_probs = []
-    
-    with torch.no_grad():
-        for images, labels in tqdm(data_loader, desc="Evaluating"):
-            images, labels = images.to(device), labels.to(device)
-            outputs = model(images)
-            probs = torch.nn.functional.softmax(outputs, dim=1)
-            _, preds = torch.max(outputs, 1)
-            
-            total += labels.size(0)
-            correct += (preds == labels).sum().item()
-            
-            if return_predictions:
-                all_preds.extend(preds.cpu().numpy())
-                all_labels.extend(labels.cpu().numpy())
-                all_probs.extend(probs.cpu().numpy())
-    
-    metrics = {
-        'accuracy': 100 * correct / total,
-        'total_samples': total,
-        'correct_predictions': correct
-    }
-     
-    return metrics, {
-        'predictions': np.array(all_preds),
-        'true_labels': np.array(all_labels),
-        'probabilities': np.array(all_probs),
-        'class_names': class_names
-    }
-
 #-------------------------- SVCCA --------------------------
 class ModelHook:
     def __init__(self, model, layers_of_interest):
@@ -152,6 +116,7 @@ class ModelHook:
             for i, (inputs, _) in enumerate(dataloader):
                 if num_batches is not None and i >= num_batches:
                     break
+
                 self.model(inputs.cuda() if torch.cuda.is_available() else inputs) # Forward pass
                 for layer_name, activation in self.activations.items():    
                     collected_activations[layer_name].append(activation)
@@ -211,18 +176,10 @@ def compute_svcca(activations1, activations2, epsilon=1e-6):
         canonical_correlations = np.maximum(canonical_correlations, 0.0)
         # SVCCA similarity is mean of canonical correlations
         svcca_similarity = np.mean(canonical_correlations)
-    except np.linalg.LinAlgError:
-        print("CCA computation failed, using fallback")
-        # Fallback: simple correlation coefficient
-        svcca_similarity = np.abs(np.corrcoef(
-            svd_acts1.flatten(), 
-            svd_acts2.flatten()
-        )[0, 1])
     
     return svcca_similarity
 
 def get_activations(model, layer, dataloader):
-    """Extract activations for a specific layer"""
     hook = ModelHook(model, [layer])
     activations = hook.get_activations(dataloader, num_batches=64)
     hook.remove_hooks()
@@ -312,7 +269,7 @@ def plot_figure2_boxplot_detailed(results, save_dir):
         patch.set_alpha(0.7)
     
     ax1.set_ylabel('CCA Similarity Score')
-    ax1.set_title(f'Figure 2: CCA Similarity in 2 Top Layers (Pretrained vs Random) -- {model_name_script}')
+    ax1.set_title(f'CCA Similarity in 2 Top Layers (Pretrained vs Random) -- {model_name_script}')
     ax1.set_ylim(0, 1.0)
     ax1.grid(axis='y', alpha=0.3)
     
@@ -330,12 +287,12 @@ def plot_figure2_boxplot_detailed(results, save_dir):
         patch.set_alpha(0.7)
     
     ax2.set_ylabel('CCA Similarity Score')
-    ax2.set_title(f'Figure 2: CCA Similarity in 2 Top Layers (FT vs FE vs RD) -- {model_name_script}')
+    ax2.set_title(f'CCA Similarity in 2 Top Layers (FT vs FE vs RD) -- {model_name_script}')
     ax2.set_ylim(0, 1.0)
     ax2.grid(axis='y', alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig(os.path.join(save_dir, 'figure2_boxplot.png'), dpi=300, bbox_inches='tight')
+    plt.savefig(os.path.join(save_dir, 'boxplot.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
 # Line plot
