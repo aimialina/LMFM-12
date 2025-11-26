@@ -4,7 +4,7 @@
 
 
 
-# **A Morphologically Diverse Freshwater Microalgae Dataset for Deep Learning-Based Classification with Transfer Learning Analysis**
+# **A Comprehensive Freshwater Microalgae Dataset for Deep Learning-Based Classification with Transfer Learning Analysis**
 
 Aimi Alina Binti Hussina, Mohd Ibrahim Shapiai, Shaza Eva Mohamad, Koji Iwamoto, Mohd Farizal Kamaroddin, Kazuhiro Takemoto
 
