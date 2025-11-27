@@ -5,7 +5,7 @@
 
 # **A Morphologically Diverse Freshwater Microalgae Dataset for Deep Learning-Based Classification with Transfer Learning Analysis**
 
-Aimi Alina Binti Hussina, Mohd Ibrahim Shapiai, Shaza Eva Mohamad, Koji Iwamoto, Mohd Farizal Kamaroddin, Kazuhiro Takemoto
+Aimi Alina Binti Hussin, Mohd Ibrahim Shapiai, Shaza Eva Mohamad, Koji Iwamoto, Mohd Farizal Kamaroddin, Kazuhiro Takemoto
 
 We introduce the Light Microscopy Freshwater Microalgae (LMFM-12) dataset, comprising 7,555 curated images from 12 species under multiple magnifications, the largest publicly available freshwater microalgae light microscopy dataset to date. Comprehensive evaluation of seven CNN architectures reveals that randomly initialized models achieve accuracies exceeding 98%, approaching the performance of fully fine-tuned ImageNet-pretrained networks. Through the first application of Singular Vector Canonical Correlation Analysis (SVCCA) to microalgae classification, we suggest that random initialization develops different representational strategies that may be more suited to microscopic morphology, contrasting sharply with ImageNet-adapted features. Despite achieving comparable accuracy, these divergent approaches suggest that effective microalgae classification emerges from learning specialized microscopic features rather than adapting generic visual patterns. Cross-domain evaluation reveals that while ImageNet pretraining achieves superior generalization performance, Grad-CAM++ analysis shows distinct attention patterns between ImageNet and LMFM-12 initialization strategies. This positions LMFM-12 as a useful resource for advancing automated microalgae classification research.
 
