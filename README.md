@@ -1,10 +1,9 @@
 # LMFM-12
 
-<img width="6000" height="3374" alt="graphical_abstract" src="https://github.com/user-attachments/assets/2e1a7784-5e08-4a32-bbd4-4a84f1ec09ad" />
+<img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/68f7e7b4-e37a-4144-8e00-ec06082f8173" />
 
 
-
-# **A Comprehensive Freshwater Microalgae Dataset for Deep Learning-Based Classification with Transfer Learning Analysis**
+# **A Morphologically Diverse Freshwater Microalgae Dataset for Deep Learning-Based Classification with Transfer Learning Analysis**
 
 Aimi Alina Binti Hussina, Mohd Ibrahim Shapiai, Shaza Eva Mohamad, Koji Iwamoto, Mohd Farizal Kamaroddin, Kazuhiro Takemoto
 
