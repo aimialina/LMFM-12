@@ -17,6 +17,7 @@ We introduce the Light Microscopy Freshwater Microalgae (LMFM-12) dataset, compr
 1) Comparative analysis of model performance across initialization strategies (RD, FT and FB)
 2) Analysis of SVCCA hidden representational analysis
 3) Effect of transfer learning to other publicly available phytoplankton datasets
+4) Attention pattern analysis through Grad-CAM++
 
 ---
 
@@ -31,7 +32,11 @@ We introduce the Light Microscopy Freshwater Microalgae (LMFM-12) dataset, compr
 
 #### *Torchvision*:  
 - ShuffleNet V2 (`shufflenet_v2_x1_0`)  
-- EfficientNet V2 (`efficientnet_v2_s`)  
+- EfficientNet V2 (`efficientnet_v2_s`)
+
+### lmfm_pretrained_weight
+This folder contains weights for the three top-performing models on the LMFM-12 dataset, selected based on their overall performance. These models demonstrate strong ability to learn microalgae-specific features from scratch. 
+(See Table 2 in the paper for the corresponding results)
    
 ---
 
