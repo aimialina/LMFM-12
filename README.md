@@ -39,9 +39,10 @@ This folder contains weights for the three top-performing models on the LMFM-12 
 (See Table 2 in the paper for the corresponding results)
    
 ---
+You can access our datasets here:
+https://doi.org/10.5281/zenodo.18334068 
 
 If you find our code/dataset/evaluation useful in your research, please cite:
 ```
-Hussin, A. A., Eva Mohamad, S., Iwamoto, K., & Takemoto, K. (2026). LMFM-12 [Data set]. Zenodo. https://doi.org/10.5281/zenodo.17669912
 Hussin, A. A. B., Shapiai, M. I., Mohamad, S. E., Iwamoto, K., Kamaroddin, M. F., & Takemoto, K. (2026). A morphologically diverse freshwater microalgae dataset for deep learning-based classification with transfer learning analysis. Ecological Informatics, 94, 103655.
 ```
